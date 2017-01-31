@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    cause (0.1)
+    influxdb (0.3.13)
+      cause
+      json
+    json (2.0.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  influxdb
