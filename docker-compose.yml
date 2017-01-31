@@ -1,7 +1,19 @@
 version: '2'
 services:
 
-  # http://<your_docker_host_ip>:8083/
+  # kafka: 
+  #   image: landoop/fast-data-dev
+  #   environment: 
+  #     ADV_HOST: localhost
+  #   ports: 
+  #     - "9092:9092"
+  #     - "8083:8083"
+  #     - "8082:8082"
+  #     - "8080:8081"
+  #     - "3030:3030"
+  #     - "2181:2181"
+
+  http://<your_docker_host_ip>:8083/
   influxdb:
     image: tutum/influxdb
     container_name: influxdb
@@ -19,6 +31,6 @@ services:
     image: grafana/grafana
     container_name: grafana
     links:
-      - influxdb
+      - kafka
     ports: 
       - "3000:3000"

@@ -28,13 +28,14 @@ module InfluxDB
       end
 
       # Enumerator that emits a sine wave
-      Value = (0..360).to_a.map {|i| Math.send(:sin, i / 10.0) * 10 }.each
+      Value = (0..360).to_a.map {|i| rand(i) }.each
 
       def data_points
         name     = 'moisture'
+
         loop do
           data = {
-            values: { value: Value.next },
+            values: { value: Value.next.to_f },
             tags:   { wave: 'sine' } # tags are optional
           }
 
