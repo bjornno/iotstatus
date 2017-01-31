@@ -1,0 +1,24 @@
+version: '2'
+services:
+
+  # http://<your_docker_host_ip>:8083/
+  influxdb:
+    image: tutum/influxdb
+    container_name: influxdb
+    environment:
+      PRE_CREATE_DB: wadus
+    ports: 
+      - "8083:8083"
+      - "8086:8086"
+    expose:
+      - "8090"
+      - "8099"
+
+  # http://<your_docker_host_ip>:3000/
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    links:
+      - influxdb
+    ports: 
+      - "3000:3000"
