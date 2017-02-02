@@ -6,9 +6,11 @@ GEM
       cause
       json
     json (2.0.3)
+    ruby-kafka (0.3.16)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   influxdb
+  ruby-kafka

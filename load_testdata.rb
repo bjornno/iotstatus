@@ -29,14 +29,14 @@ module InfluxDB
 
       # Enumerator that emits a sine wave
       Value = (0..360).to_a.map {|i| rand(i) }.each
-
       def data_points
+        accounts = ['a', 'b', 'c']
         name     = 'moisture'
 
         loop do
           data = {
             values: { value: Value.next.to_f },
-            tags:   { wave: 'sine' } # tags are optional
+            tags:   { account: accounts.sample } # tags are optional
           }
 
           client.write_point(name, data)
