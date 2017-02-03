@@ -17,16 +17,16 @@ kafka = Kafka.new(
 producer = kafka.producer
 
 # Add a message to the producer buffer.
-#event = {
-#  values: { value: 456 },
-#  tags:   { account: 'kafka' } # tags are optional
-#}
 event = {
-  key: "foo",
-  value: "bar"
+  values: { value: 456 },
+  tags:   { account: 'kafka' } # tags are optional
 }
-data =  avro.encode(event, schema_name: "keyvalue")
-producer.produce(data, topic: "moisture-topic5")
+#event = {
+#  key: "foo",
+#  value: "bar"
+#}
+data =  avro.encode(event, schema_name: "moisture")
+producer.produce(data, topic: "moisture-topic6")
 
 # Deliver the messages to Kafka.
 producer.deliver_messages

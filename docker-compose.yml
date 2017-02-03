@@ -1,21 +1,21 @@
 version: '2'
 services:
 
-  kafka: 
-    image: landoop/fast-data-dev
-    links:
-      - redis
-      - influxdb
-    
-    environment: 
-      ADV_HOST: localhost
-    ports: 
-      - "9092:9092"
-      - "8083:8083"
-      - "8082:8082"
-      - "8080:8081"
-      - "3030:3030"
-      - "2181:2181"
+  # kafka: 
+  #   image: landoop/fast-data-dev
+  #   links:
+  #     - redis
+  #     - influxdb
+
+  #   environment: 
+  #     ADV_HOST: localhost
+  #   ports: 
+  #     - "9092:9092"
+  #     - "8083:8083"
+  #     - "8082:8082"
+  #     - "8080:8081"
+  #     - "3030:3030"
+  #     - "2181:2181"
 
 
 
@@ -48,16 +48,22 @@ services:
   #   depends_on:
   #     - kafka
 
-  cassandra:
-    image: spotify/cassandra
-    ports:
-      - "9042:9042"
-      - "9160:9160"
+  eventstore:
+    image: adbrowne/eventstore
+    ports: 
+      - "2113:2113"
+      - "1113:1113"
+      
+  # cassandra:
+  #   image: spotify/cassandra
+  #   ports:
+  #     - "9042:9042"
+  #     - "9160:9160"
 
-  redis:
-    image: redis
-    ports:
-      - "6379:6379"
+  # redis:
+  #   image: redis
+  #   ports:
+  #     - "6379:6379"
 
   #http://<your_docker_host_ip>:8083/
   influxdb:
