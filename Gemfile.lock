@@ -1,16 +1,27 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    avro (1.8.1)
+      multi_json
+    avro_turf (0.7.2)
+      avro (>= 1.7.7, < 1.9)
+      excon (~> 0.45)
     cause (0.1)
+    excon (0.54.0)
     influxdb (0.3.13)
       cause
       json
     json (2.0.3)
+    multi_json (1.12.1)
     ruby-kafka (0.3.16)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  avro_turf
   influxdb
   ruby-kafka
+
+BUNDLED WITH
+   1.14.3

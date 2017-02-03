@@ -1,0 +1,14 @@
+{
+  "name": "keyvalue",
+  "type": "record",
+  "fields": [
+    {
+      "name": "key",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "type": "string"
+    }
+  ]
+}

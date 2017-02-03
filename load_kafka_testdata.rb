@@ -1,4 +1,8 @@
 require "kafka"
+require 'json'
+require "avro_turf"
+
+avro = AvroTurf.new(schemas_path: "schemas/")
 
 kafka = Kafka.new(
   # At least one of these nodes must be available:
@@ -8,4 +12,21 @@ kafka = Kafka.new(
   client_id: "my-application",
 )
 
-kafka.deliver_message("Hello, World!", topic: "moisture-topic")
+#kafka.deliver_message("Hello, World!", topic: "moisture-topic")
+
+producer = kafka.producer
+
+# Add a message to the producer buffer.
+#event = {
+#  values: { value: 456 },
+#  tags:   { account: 'kafka' } # tags are optional
+#}
+event = {
+  key: "foo",
+  value: "bar"
+}
+data =  avro.encode(event, schema_name: "keyvalue")
+producer.produce(data, topic: "moisture-topic5")
+
+# Deliver the messages to Kafka.
+producer.deliver_messages

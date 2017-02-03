@@ -1,41 +1,63 @@
 version: '2'
 services:
 
-  # kafka: 
-  #   image: landoop/fast-data-dev
-  #   environment: 
-  #     ADV_HOST: localhost
-  #   ports: 
-  #     - "9092:9092"
-  #     - "8084:8083"
-  #     - "8082:8082"
-  #     - "8080:8081"
-  #     - "3030:3030"
+  kafka: 
+    image: landoop/fast-data-dev
+    links:
+      - redis
+      - influxdb
+    
+    environment: 
+      ADV_HOST: localhost
+    ports: 
+      - "9092:9092"
+      - "8083:8083"
+      - "8082:8082"
+      - "8080:8081"
+      - "3030:3030"
+      - "2181:2181"
+
+
+
+  # zookeeper:
+  #   image: wurstmeister/zookeeper
+  #   ports:
   #     - "2181:2181"
 
+  # kafka:
+  #   image: wurstmeister/kafka
+  #   ports:
+  #     - "9092:9092"
+  #     - "1099:1099"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   environment:
+  #     KAFKA_CREATE_TOPICS: "moisture-topic:1:1"
+  #     KAFKA_ADVERTISED_HOST_NAME: "localhost"
+  #     KAFKA_ZOOKEEPER_CONNECT: "zookeeper"
+  #     KAFKA_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.rmi.port=1099"
+  #     JMX_PORT: 1099
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
 
+  # kafkacat:
+  #   image: ryane/kafkacat
+  #   working_dir: /kafkacat
+  #   entrypoint: /bin/bash
+  #   command: ./run.sh messages_graphite.txt
+  #   depends_on:
+  #     - kafka
 
-  kafka: 
-    image: spotify/kafka
-    ports: 
-      - "2181:2181" 
-      - "9092:9092"
-    environment: 
-      ADVERTISED_PORT: 9092 
-      CONSUMER_THREADS: 1 
-      TOPICS: "moisture-topic"
+  cassandra:
+    image: spotify/cassandra
+    ports:
+      - "9042:9042"
+      - "9160:9160"
 
-  kafkainfluxdb:
-    image: kafkainfluxdb
-    links: 
-      - kafka
-      - influxdb
-    environment: 
-      - kafka_host: kafka
-      - kafka_topic: "moisture-topic"
-      - influxdb_host: influxdb
-      - influxdb_dbname: wadus
-
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
 
   #http://<your_docker_host_ip>:8083/
   influxdb:
@@ -44,13 +66,13 @@ services:
     environment:
       PRE_CREATE_DB: wadus
     ports: 
-      - "8083:8083"
+      - "8000:8083"
       - "8086:8086"
     expose:
       - "8090"
       - "8099"
 
-  # http://<your_docker_host_ip>:3000/
+  # # http://<your_docker_host_ip>:3000/
   grafana:
     image: grafana/grafana
     container_name: grafana

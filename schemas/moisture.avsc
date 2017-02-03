@@ -1,0 +1,32 @@
+{
+  "name": "moisture",
+  "type": "record",
+  "fields": [
+    {
+      "name": "values",
+      "type": {
+        "type": "record",
+        "name": "values",
+        "fields": [
+          {
+            "name": "value",
+            "type": "float"
+          }
+        ]
+      }
+    },
+    {
+      "name": "tags",
+      "type": {
+        "type": "record",
+        "name": "tags",
+        "fields": [
+          {
+            "name": "account",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
