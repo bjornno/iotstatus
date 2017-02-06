@@ -19,6 +19,21 @@ module InfluxDB
         )
       end
 
+#      min lekse:
+#      få noe til å kjøre på aws google 
+#      https
+#      persistent database
+
+#      {
+#        "version": "1",
+#        "id": "jshdkjsandkjsd",
+#        "timestamp": "2015-02-02T12:12:12Z",
+#        "t1": 4,
+#        "rf1": 56,
+#        "t2": 5,
+#        "rf2": 65
+#      }
+
       def data_points
         name     = 'moisture'
         loop do
