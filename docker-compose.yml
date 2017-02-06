@@ -66,6 +66,14 @@ services:
   #     - "6379:6379"
 
   #http://<your_docker_host_ip>:8083/
+  sensor-rest:
+    build: sensor-rest
+    container_name: sensor-rest
+    links: 
+      - influxdb
+    ports:
+      - "9292:9292"
+
   influxdb:
     image: tutum/influxdb
     container_name: influxdb
