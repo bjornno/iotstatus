@@ -9,14 +9,6 @@ module InfluxDB
       USER     = "root"
       PASSWORD = "root"
 
-      # def write_data_points
-      #   100.times do 
-      #     client.write_points(data_points)
-      #   end
-      # end
-
-      
-
       def client
         @client ||= InfluxDB::Client.new(
           host: HOST,
@@ -27,16 +19,12 @@ module InfluxDB
         )
       end
 
-      # Enumerator that emits a sine wave
-      Value = (0..360).to_a.map {|i| rand(i) }.each
       def data_points
-        accounts = ['a', 'b', 'c']
         name     = 'moisture'
-
         loop do
           data = {
-            values: { value: Value.next.to_f },
-            tags:   { account: accounts.sample } # tags are optional
+            values: { value: (80..105).to_a.sample.to_f },
+            tags:   { account: ['a', 'b', 'c'].sample } # tags are optional
           }
 
           client.write_point(name, data)
@@ -44,21 +32,11 @@ module InfluxDB
           sleep 1
         end
       end
-      # def data_points
-      #   [
-      #     {
-      #       series: "score",
-      #       values: { value: rand(200) }
-      #     },
-      #     {
-      #       series: "searches",
-      #       values: { value: rand(200) }
-      #     }
-      #   ]
-      # end
     end
   end
 end
+
+20k*365*20
 
 populator = InfluxDB::Playground::Populator.new
 populator.data_points

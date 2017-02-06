@@ -48,11 +48,11 @@ services:
   #   depends_on:
   #     - kafka
 
-  eventstore:
-    image: adbrowne/eventstore
-    ports: 
-      - "2113:2113"
-      - "1113:1113"
+  #eventstore:
+  #  image: adbrowne/eventstore
+  #  ports: 
+  #    - "2113:2113"
+  #    - "1113:1113"
       
   # cassandra:
   #   image: spotify/cassandra
