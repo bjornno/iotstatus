@@ -14,7 +14,7 @@ def data
   }
 end
 
-url = "http://ec2-35-156-110-236.eu-central-1.compute.amazonaws.com:9292/"
+url = "http://localhost:9292/"
 resource = RestClient::Resource.new(
   url,
   headers: {"Content-Type" => "application/vnd.eventstore.events+json"}

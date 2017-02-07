@@ -90,7 +90,7 @@ services:
     restart: always
 
   influxdb-backup:
-    image: ## your backup container image ##
+    build: backup
     container_name: influxdb-backup
     restart: always
     links:
@@ -112,5 +112,5 @@ services:
       - "3000:3000"
 
 
-  volumes:
-    influx_data: # named volumes
+volumes:
+  influx_data: # named volumes

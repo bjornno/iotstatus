@@ -51,6 +51,3 @@ DEPENDENCIES
   rest-client
   ruby-kafka
   sinatra
-
-BUNDLED WITH
-   1.14.3

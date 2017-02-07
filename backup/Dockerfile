@@ -8,7 +8,7 @@ ENV S3CMD_VERSION=1.6.1
 ENV INFLUX_HOST=influxdb
 
 # Copy S3CMD config
-ADD s3cfg /root/.s3cfg
+#ADD s3cfg /root/.s3cfg
 
 # Some tiny helpers 
 RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl
