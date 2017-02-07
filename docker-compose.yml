@@ -96,9 +96,9 @@ services:
     links:
       - "influxdb:influxdb"
     environment:
-      ACCESS_KEY: ## AWS ACCESS KEY ##
-      SECRET_KEY: ## AWS SECRET ##
-      S3_PATH: s3:// ## S3 BUCKET ##
+      ACCESS_KEY: AKIAJYTLFWCTKQLIFWQQ
+      SECRET_KEY: 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
+      S3_PATH: s3://bjornno-influxdb
       INFLUX_HOST: influxdb
       DATABASES: wadus
 
