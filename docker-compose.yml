@@ -86,7 +86,7 @@ services:
       - "8090"
       - "8099"
     volumes:
-      - influx_data:/var/lib/influxdb
+      - influx_data:/data
     restart: always
 
   influxdb-backup:
