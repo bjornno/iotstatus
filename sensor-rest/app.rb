@@ -19,6 +19,7 @@ def client
 end
 
 post '/' do 
+  name = 'sensordata'
   payload = JSON.parse(request.body.read, symbolize_names: true)
 
   data = {
