@@ -110,7 +110,10 @@ services:
       - influxdb
     ports: 
       - "3000:3000"
+    volumes: 
+      - grafana_data:/var/lib/grafana
 
 
 volumes:
   influx_data: # named volumes
+  grafana_data: 
