@@ -1,5 +1,6 @@
 require "rest-client"
 require "securerandom"
+require 'json'
 
 def data 
   {

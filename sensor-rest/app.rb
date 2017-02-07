@@ -24,7 +24,7 @@ post '/' do
 
   data = {
     values: { t1: payload[:t1], rt1: payload[:rt1], t2: payload[:t2], rt2: payload[:rt2] },
-    tags:   { version: payload[:version], account: payload[:id] },
+    tags:   { version: payload[:version], sensor: payload[:id] },
     timestamp: payload[:timestamp] 
   }
 
