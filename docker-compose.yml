@@ -85,6 +85,22 @@ services:
     expose:
       - "8090"
       - "8099"
+    volumes:
+      - influx_data:/var/lib/influxdb
+    restart: always
+
+  influxdb-backup:
+    image: ## your backup container image ##
+    container_name: influxdb-backup
+    restart: always
+    links:
+      - "influxdb:influxdb"
+    environment:
+      ACCESS_KEY: ## AWS ACCESS KEY ##
+      SECRET_KEY: ## AWS SECRET ##
+      S3_PATH: s3:// ## S3 BUCKET ##
+      INFLUX_HOST: influxdb
+      DATABASES: wadus
 
   # # http://<your_docker_host_ip>:3000/
   grafana:
@@ -94,3 +110,7 @@ services:
       - influxdb
     ports: 
       - "3000:3000"
+
+
+  volumes:
+    influx_data: # named volumes
